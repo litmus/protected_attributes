@@ -57,7 +57,7 @@ module ActiveModel
       class_attribute :_protected_attributes,  instance_writer: false
       class_attribute :_active_authorizer,     instance_writer: false
       class_attribute :_uses_mass_assignment_security, instance_writer: false
-      self._uses_mass_assignment_security = false
+      self._uses_mass_assignment_security = true
 
       class_attribute :_mass_assignment_sanitizer, instance_writer: false
       self.mass_assignment_sanitizer = :logger
