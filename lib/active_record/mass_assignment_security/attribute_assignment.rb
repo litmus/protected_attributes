@@ -48,6 +48,14 @@ module ActiveRecord
       def assign_attributes(new_attributes, options = {})
         return if new_attributes.blank?
 
+        if new_attributes.is_a?(ActionController::Parameters) && !new_attributes.permitted?
+          location = caller.find do |loc|
+            loc.include? "controller"
+          end
+
+          StrongParameterViolation.create location: location
+        end
+
         attributes                  = new_attributes.stringify_keys
         multi_parameter_attributes  = []
         nested_parameter_attributes = []
