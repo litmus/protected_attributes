@@ -53,7 +53,9 @@ module ActiveRecord
             loc.include? "controllers"
           end
 
-          StrongParameterViolation.create location: location
+          StrongParameterViolation.create(
+            location: location&.split(/releases\/[0-9]+\//)&.last
+          )
         end
 
         attributes                  = new_attributes.stringify_keys
