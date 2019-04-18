@@ -50,7 +50,7 @@ module ActiveRecord
 
         if new_attributes.is_a?(ActionController::Parameters) && !new_attributes.permitted?
           location = caller.find do |loc|
-            loc.include? "controller"
+            loc.include? "controllers"
           end
 
           StrongParameterViolation.create location: location
